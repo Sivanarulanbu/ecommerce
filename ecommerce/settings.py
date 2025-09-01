@@ -62,7 +62,7 @@ DATABASES = {
         'NAME': 'shop',
         'USER':'postgres',
         'PASSWORD':'Siva5107',
-        'HOST':'localhost',
+        'HOST':'https://ecommerce-3-cve5.onrender.com',
         'PORT':'5432',
     }
 }
