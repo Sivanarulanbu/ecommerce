@@ -66,9 +66,10 @@ DATABASES = {
         'PASSWORD':'Siva5107',
         'HOST':'https://ecommerce-3-cve5.onrender.com',
         'PORT':'5432',
-		'DEFAULT': dj_database_url.config(
-			default=os.environ.get("DATABASE_URL")  # No fallback to https
-         )
+		'default': dj_database_url.config(
+    				default=os.environ.get("DATABASE_URL")  # no fallback to your site URL
+					)
+
     
     }
 }
