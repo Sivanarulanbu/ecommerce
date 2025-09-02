@@ -2,6 +2,7 @@
 ## 1. settings.py
 
 import os
+import dj_database_url
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,6 +66,9 @@ DATABASES = {
         'PASSWORD':'Siva5107',
         'HOST':'https://ecommerce-3-cve5.onrender.com',
         'PORT':'5432',
+		'DEFAULT': dj_database_url.parse(
+        os.environ.get("DATABASE_URL", "https://ecommerce-3-cve5.onrender.com")
+    )
     }
 }
 
