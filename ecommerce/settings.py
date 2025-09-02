@@ -64,10 +64,9 @@ DATABASES = {
         'NAME': 'shop',
         'USER':'postgres',
         'PASSWORD':'Siva5107',
-        'HOST':'https://ecommerce-3-cve5.onrender.com',
+        'HOST':'db-xxxxx.render.com',
         'PORT':'5432',
-		'default': dj_database_url.config(
-    				default=os.environ.get("DATABASE_URL")  # no fallback to your site URL
+		'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))# no fallback to your site URL
 					)
 
     
