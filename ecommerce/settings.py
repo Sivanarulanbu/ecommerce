@@ -11,7 +11,7 @@ DEBUG = True
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 
 if RENDER_EXTERNAL_HOSTNAME:
-	ALLOWED_HOSTS = ["ecommerce-3-cve5.onrender.com", "localhost", "127.0.0.1"]
+	ALLOWED_HOSTS = ["localhost", "127.0.0.1","ecommerce-3-cve5.onrender.com"]
 
 else:
     ALLOWED_HOSTS = ["*"]  
