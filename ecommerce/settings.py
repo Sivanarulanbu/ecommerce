@@ -66,7 +66,7 @@ DATABASES = {
         'PASSWORD':'Siva5107',
         'HOST':'db-xxxxx.render.com',
         'PORT':'5432',
-		'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))# no fallback to your site URL
+		"default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
 					
 
     
