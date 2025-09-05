@@ -71,13 +71,14 @@ WSGI_APPLICATION = "ecommerce.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("shop"),
-        "USER": os.environ.get("postgres"),
-        "PASSWORD": os.environ.get("Siva5107"),
-        "HOST": os.environ.get("db-shop-render.com"),
-        "PORT": os.environ.get("DATABASE_PORT", "5432"),
+        "NAME": os.environ.get("DB_NAME", "shop"),
+        "USER": os.environ.get("DB_USER", "postgres"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "Siva5107"),
+        "HOST": os.environ.get("DB_HOST", "db-shop-render.com"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
+
 
 # ----------------------------
 # PASSWORD VALIDATION
