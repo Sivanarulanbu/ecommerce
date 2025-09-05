@@ -10,9 +10,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "change-me-in-prod")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    "shop.onrender.com", 
-	"www.swiftbuy.com"
+    "shop.onrender.com",
+    "www.shop.onrender.com",
+    "www.swiftbuy.com",
+    "swiftbuy.com",
 ]
+
 
 # ----------------------------
 # INSTALLED APPS
