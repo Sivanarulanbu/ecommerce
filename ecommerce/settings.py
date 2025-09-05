@@ -1,21 +1,21 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 # ----------------------------
 # BASE SETTINGS
 # ----------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SECURITY
 SECRET_KEY = os.environ.get("SECRET_KEY", "change-me-in-prod")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "shop.onrender.com",
-    "www.shop.onrender.com",
-    "www.swiftbuy.com",
-    "swiftbuy.com",
-]
-
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS",
+    "shop.onrender.com,www.swiftbuy.com"
+).split(",")
 
 # ----------------------------
 # INSTALLED APPS
@@ -28,8 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "shop",
-	'accounts',
-    'cart'
+    "accounts",
+    "cart",
 ]
 
 # ----------------------------
@@ -69,19 +69,16 @@ TEMPLATES = [
 WSGI_APPLICATION = "ecommerce.wsgi.application"
 
 # ----------------------------
-# DATABASE
+# DATABASE (Render-friendly)
 # ----------------------------
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "shop"),
-        "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "Siva5107"),
-        "HOST": os.environ.get("DB_HOST", "db-shop-render.com"),
-        "PORT": os.environ.get("DB_PORT", "5432"),
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get(
+            "DATABASE_URL",
+            "postgres://postgres:Siva5107@db-shop-render.com:5432/shop"
+        )
+    )
 }
-
 
 # ----------------------------
 # PASSWORD VALIDATION
@@ -105,11 +102,11 @@ USE_TZ = True
 # STATIC FILES
 # ----------------------------
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  # For collectstatic
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # ----------------------------
-# MEDIA FILES (Optional)
+# MEDIA FILES
 # ----------------------------
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
