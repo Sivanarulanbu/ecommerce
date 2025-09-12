@@ -8,10 +8,15 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'True'
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 
-ALLOWED_HOSTS=os.environ.get("ALLOWED_HOSTS").split(" ") 
+allowed_hosts_env = os.environ.get("ALLOWED_HOSTS")
+if allowed_hosts_env:
+    ALLOWED_HOSTS = allowed_hosts_env.split()
+else:
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
