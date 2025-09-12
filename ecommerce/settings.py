@@ -3,17 +3,15 @@
 
 import os
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key-here'
-DEBUG = True
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, "localhost"]
-else:
-    ALLOWED_HOSTS = ["*"]  
+ALLOWED_HOSTS=os.environ.get("ALLOWED_HOSTS").split(" ") 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,17 +60,17 @@ DATABASES = {
         'NAME': 'shop',
         'USER':'postgres',
         'PASSWORD':'Siva5107',
-        'HOST':'https://ecommerce-3-cve5.onrender.com',
         'PORT':'5432',
     }
 }
 
+DATABASES['default'] = dj_database_url.parse('postgresql://siva:NyhtOHCQ9d89YoORFysjavPTnopOT7Uw@dpg-d2q4es2dbo4c73bpkqa0-a.oregon-postgres.render.com/shop_b92p')
+database_url= os.environ.get('DATABASE_URL')
+
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-	(BASE_DIR / 'static'),
-	]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
